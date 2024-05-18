@@ -3,5 +3,5 @@
 Clone this repository to your local machine with:
 
 ```bash
-git clone https://github.com/Freshman-tech/pomodoro-starter-files.git
+git clone https://github.com/ArinAkaMazu/Pomodoro_maykit_project.git
 ```
