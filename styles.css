@@ -25,6 +25,8 @@ body {
   background-image: url("aesthetic-purple-orange-beautiful-nature-desktop-wallpaper-sr10012413-1706503295947-cover.webp");
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
   transition: background-color 1s ease;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -132,8 +134,47 @@ button:active {
   display: none;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 1200px) {
   .clock {
-    font-size: 8rem;
+    font-size: 12rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .clock {
+    font-size: 10rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .timer {
+    padding: 15px;
+  }
+  .clock {
+    font-size: 7rem;
+  }
+  .main-button {
+    font-size: 18px;
+    height: 50px;
+    width: 180px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .timer {
+    padding: 10px;
+  }
+  .clock {
+    font-size: 5rem;
+  }
+  .main-button {
+    font-size: 16px;
+    height: 45px;
+    width: 160px;
+  }
+  .mode-button {
+    font-size: 14px;
+    height: 24px;
+    padding: 2px 10px;
   }
 }
