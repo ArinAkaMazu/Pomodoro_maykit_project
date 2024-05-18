@@ -18,13 +18,20 @@ mainButton.addEventListener("click", () => {
 
 const modeButtons = document.querySelector("#js-mode-buttons");
 modeButtons.addEventListener("click", (event) => {
-  playButtonClickSound(); // Play sound on button click
+  playButtonClickSound();
   handleMode(event);
 });
 
-// Load the sound files
 const alarmSound = new Audio("break.mp3");
 const buttonClickSound = new Audio("button-sound.mp3");
+
+document.addEventListener("DOMContentLoaded", () => {
+  buttonClickSound.load();
+  buttonClickSound.addEventListener("canplaythrough", () => {
+    buttonClickSound.readyToPlay = true;
+  });
+  switchMode("pomodoro");
+});
 
 function getRemainingTime(endTime) {
   const currentTime = Date.parse(new Date());
@@ -52,7 +59,7 @@ function startTimer() {
     total = timer.remainingTime.total;
     if (total <= 0) {
       clearInterval(interval);
-      alarmSound.play(); // Play sound when timer ends
+      alarmSound.play();
     }
   }, 1000);
 }
@@ -90,18 +97,15 @@ function switchMode(mode) {
 
   updateClock();
 }
-
 function handleMode(event) {
   const { mode } = event.target.dataset;
   if (!mode) return;
   switchMode(mode);
   stopTimer();
 }
-
 function playButtonClickSound() {
-  buttonClickSound.play();
+  if (buttonClickSound.readyToPlay) {
+    buttonClickSound.currentTime = 0;
+    buttonClickSound.play();
+  }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  switchMode("pomodoro");
-});
