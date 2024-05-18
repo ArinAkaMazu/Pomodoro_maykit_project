@@ -22,7 +22,7 @@ html {
 }
 
 body {
-  background-image: url("aesthetic-purple-orange-beautiful-nature-desktop-wallpaper-sr10012413-1706503295947-cover.webp");
+  background-image: url("background.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -32,7 +32,7 @@ body {
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   user-select: none;
   color: var(--white);
-  cursor: url("pack445.png"), auto;
+  cursor: url("paw.png"), auto;
 }
 
 progress {
