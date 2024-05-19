@@ -6,12 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Pomodoro Clock</title>
     <link rel="stylesheet" href="styles.css" />
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="clock.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <main class="app" id="app">
+    <main class="app">
       <progress id="js-progress" value="0"></progress>
       <div class="progress-bar"></div>
+      <div class="heading">I am grateful for this focus ♥</div>
       <div class="timer">
         <div class="button-group mode-buttons" id="js-mode-buttons">
           <button
@@ -48,14 +55,12 @@
           </button>
           <button class="adjust-button" id="js-increase">+</button>
         </div>
-        <button class="fullscreen-button" id="js-fullscreen">&#x26F6;</button>
+        <button class="fullscreen-button" id="js-fullscreen">⛶</button>
       </div>
     </main>
     <div class="hidden">
-      <audio src="backtowork.mp3" data-sound="pomodoro"></audio>
-      <audio src="break.mp3" data-sound="shortBreak"></audio>
-      <audio src="break.mp3" data-sound="longBreak"></audio>
-      <audio src="button-sound.mp3" id="button-sound"></audio>
+      <audio src="button-sound.mp3" data-sound="button"></audio>
+      <audio src="break.mp3" data-sound="end"></audio>
     </div>
     <script src="main.js"></script>
   </body>

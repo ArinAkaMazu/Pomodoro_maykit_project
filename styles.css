@@ -54,6 +54,14 @@ progress::-webkit-progress-value {
   position: relative;
 }
 
+.heading {
+  font-size: 2rem;
+  color: white;
+  font-family: "Poppins", cursive;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 .clock {
   margin: 20px 0;
   font-size: 15rem;
