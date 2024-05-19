@@ -84,7 +84,10 @@ progress::-webkit-progress-value {
 }
 
 .mode-button.active {
-  border-color: #fff;
+  border-color: rgba(209, 208, 208, 0.1);
+}
+.mode-button:hover {
+  background-color: #666666;
 }
 
 .main-buttons {
@@ -108,7 +111,10 @@ progress::-webkit-progress-value {
   border-radius: 5px;
   transition: color 0.5s ease-in-out;
 }
-
+.adjust-button:hover,
+.main-button:hover {
+  background-color: gainsboro;
+}
 .main-button {
   width: 200px;
 }
@@ -122,6 +128,7 @@ button:active {
   transform: translateY(6px);
   box-shadow: none;
   outline: none;
+  background-color: rgba(95, 95, 95, 0.63);
 }
 
 .hidden {
