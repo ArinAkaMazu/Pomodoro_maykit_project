@@ -58,6 +58,7 @@ progress::-webkit-progress-value {
   font-size: 2rem;
   color: white;
   font-family: "Poppins", cursive;
+  font-weight: 500;
   margin-bottom: 20px;
   text-align: center;
 }
