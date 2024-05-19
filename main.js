@@ -1,13 +1,21 @@
+// main.js
+
 const timer = {
-  pomodoro: 30,
+  pomodoro: 25,
   shortBreak: 5,
   longBreak: 15,
   longBreakInterval: 4,
+  remainingTime: {
+    total: 0,
+    minutes: 0,
+    seconds: 0,
+  },
 };
+
 let interval;
 const mainButton = document.getElementById("js-btn");
 mainButton.addEventListener("click", () => {
-  playButtonClickSound(); // Play sound on button click
+  playButtonSound();
   const { action } = mainButton.dataset;
   if (action === "start") {
     startTimer();
@@ -18,27 +26,32 @@ mainButton.addEventListener("click", () => {
 
 const modeButtons = document.querySelector("#js-mode-buttons");
 modeButtons.addEventListener("click", (event) => {
-  playButtonClickSound();
+  playButtonSound();
   handleMode(event);
 });
 
-const alarmSound = new Audio("break.mp3");
-const buttonClickSound = new Audio("button-sound.mp3");
-
-document.addEventListener("DOMContentLoaded", () => {
-  buttonClickSound.load();
-  buttonClickSound.addEventListener("canplaythrough", () => {
-    buttonClickSound.readyToPlay = true;
-  });
-  switchMode("pomodoro");
+const increaseButton = document.getElementById("js-increase");
+const decreaseButton = document.getElementById("js-decrease");
+increaseButton.addEventListener("click", () => {
+  playButtonSound();
+  increaseTime();
 });
+decreaseButton.addEventListener("click", () => {
+  playButtonSound();
+  decreaseTime();
+});
+
+const buttonSound = document.getElementById("button-sound");
+const breakSound = document.getElementById("break-sound");
 
 function getRemainingTime(endTime) {
   const currentTime = Date.parse(new Date());
   const difference = endTime - currentTime;
+
   const total = Number.parseInt(difference / 1000, 10);
   const minutes = Number.parseInt((total / 60) % 60, 10);
   const seconds = Number.parseInt(total % 60, 10);
+
   return {
     total,
     minutes,
@@ -49,9 +62,11 @@ function getRemainingTime(endTime) {
 function startTimer() {
   let { total } = timer.remainingTime;
   const endTime = Date.parse(new Date()) + total * 1000;
+
   mainButton.dataset.action = "stop";
-  mainButton.textContent = "stop";
+  mainButton.textContent = "Stop";
   mainButton.classList.add("active");
+
   interval = setInterval(function () {
     timer.remainingTime = getRemainingTime(endTime);
     updateClock();
@@ -59,15 +74,17 @@ function startTimer() {
     total = timer.remainingTime.total;
     if (total <= 0) {
       clearInterval(interval);
-      alarmSound.play();
+      breakSound.play();
+      switchMode(timer.mode === "pomodoro" ? "shortBreak" : "pomodoro");
     }
   }, 1000);
 }
 
 function stopTimer() {
   clearInterval(interval);
+
   mainButton.dataset.action = "start";
-  mainButton.textContent = "start";
+  mainButton.textContent = "Start";
   mainButton.classList.remove("active");
 }
 
@@ -89,6 +106,7 @@ function switchMode(mode) {
     minutes: timer[mode],
     seconds: 0,
   };
+
   document
     .querySelectorAll("button[data-mode]")
     .forEach((e) => e.classList.remove("active"));
@@ -97,15 +115,42 @@ function switchMode(mode) {
 
   updateClock();
 }
+
 function handleMode(event) {
   const { mode } = event.target.dataset;
   if (!mode) return;
+
   switchMode(mode);
   stopTimer();
 }
-function playButtonClickSound() {
-  if (buttonClickSound.readyToPlay) {
-    buttonClickSound.currentTime = 0;
-    buttonClickSound.play();
+
+function increaseTime() {
+  if (timer.mode === "pomodoro") {
+    timer.pomodoro += 5;
+  } else if (timer.mode === "shortBreak") {
+    timer.shortBreak += 5;
+  } else if (timer.mode === "longBreak") {
+    timer.longBreak += 5;
   }
+  switchMode(timer.mode);
 }
+
+function decreaseTime() {
+  if (timer.mode === "pomodoro" && timer.pomodoro > 5) {
+    timer.pomodoro -= 5;
+  } else if (timer.mode === "shortBreak" && timer.shortBreak > 5) {
+    timer.shortBreak -= 5;
+  } else if (timer.mode === "longBreak" && timer.longBreak > 5) {
+    timer.longBreak -= 5;
+  }
+  switchMode(timer.mode);
+}
+
+function playButtonSound() {
+  buttonSound.currentTime = 0;
+  buttonSound.play();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  switchMode("pomodoro");
+});

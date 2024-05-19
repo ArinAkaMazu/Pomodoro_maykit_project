@@ -41,15 +41,18 @@
           <span class="separator">:</span>
           <span id="js-seconds">00</span>
         </div>
-        <button class="main-button" data-action="start" id="js-btn">
-          Start
-        </button>
+        <div class="button-group main-buttons">
+          <button class="adjust-button" id="js-decrease">-</button>
+          <button class="main-button" data-action="start" id="js-btn">
+            Start
+          </button>
+          <button class="adjust-button" id="js-increase">+</button>
+        </div>
       </div>
     </main>
     <div class="hidden">
-      <audio src="backtowork.mp3" data-sound="pomodoro"></audio>
-      <audio src="break.mp3" data-sound="shortBreak"></audio>
-      <audio src="break.mp3" data-sound="longBreak"></audio>
+      <audio src="button-sound.mp3" id="button-sound"></audio>
+      <audio src="break.mp3" id="break-sound"></audio>
     </div>
     <script src="main.js"></script>
   </body>
