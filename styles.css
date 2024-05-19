@@ -1,6 +1,6 @@
 html {
   box-sizing: border-box;
-  cursor: url("paws.png"), auto;
+  cursor: url("pawprint.png"), auto;
 }
 *,
 *::before,
@@ -84,7 +84,7 @@ progress::-webkit-progress-value {
 }
 
 .mode-button.active {
-  border-color: rgba(64, 64, 64, 0.1);
+  border-color: rgba(129, 129, 129, 0.555);
 }
 .mode-button:hover {
   background-color: rgba(250, 250, 250, 0.329);
