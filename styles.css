@@ -201,3 +201,7 @@ button:active {
     width: 140px;
   }
 }
+
+html{
+  cursor: url(paws.png) , auto;
+}
