@@ -129,23 +129,18 @@ function startTimer() {
     }
   }, 1000);
 }
-
 function stopTimer() {
   clearInterval(interval);
-
   mainButton.dataset.action = "start";
   mainButton.textContent = "Start";
   mainButton.classList.remove("active");
 }
-
 function getRemainingTime(endTime) {
   const currentTime = Date.parse(new Date());
   const difference = endTime - currentTime;
-
   const total = Number.parseInt(difference / 1000, 10);
   const minutes = Number.parseInt((total / 60) % 60, 10);
   const seconds = Number.parseInt(total % 60, 10);
-
   return {
     total,
     minutes,
