@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  cursor: url("paw.png"), auto;
 }
 *,
 *::before,
@@ -46,15 +47,15 @@ progress::-webkit-progress-value {
 
 .timer {
   text-align: center;
-  padding: 20px;
+  padding: 40px;
   background-color: rgba(17, 14, 14, 0.8);
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .clock {
   margin: 20px 0;
-  font-size: 15rem;
+  font-size: 16rem;
   line-height: 1;
   display: flex;
   align-items: center;
