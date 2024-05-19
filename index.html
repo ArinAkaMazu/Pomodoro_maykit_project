@@ -7,6 +7,10 @@
     <title>Pomodoro Clock</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="shortcut icon" href="clock.png" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -59,8 +63,8 @@
       </div>
     </main>
     <div class="hidden">
-      <audio src="button-sound.mp3" data-sound="button"></audio>
-      <audio src="break.mp3" data-sound="end"></audio>
+      <audio id="button-sound" src="button-sound.mp3"></audio>
+      <audio id="break-sound" src="break.mp3"></audio>
     </div>
     <script src="main.js"></script>
   </body>
