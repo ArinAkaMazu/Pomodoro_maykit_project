@@ -1,6 +1,5 @@
 html {
   box-sizing: border-box;
-  cursor: url("paw.png"), auto;
 }
 *,
 *::before,
@@ -47,21 +46,22 @@ progress::-webkit-progress-value {
 
 .timer {
   text-align: center;
-  padding: 40px;
+  padding: 50px;
   background-color: rgba(17, 14, 14, 0.8);
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .clock {
   margin: 20px 0;
-  font-size: 16rem;
+  font-size: 15rem;
   line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: Arial, sans-serif;
-  color: #fff;
+  color: white;
 }
 
 .mode-buttons {
@@ -69,25 +69,24 @@ progress::-webkit-progress-value {
 }
 
 .mode-button {
-  font-size: 20px;
+  font-size: 18px;
   height: 28px;
   cursor: pointer;
   box-shadow: none;
-  font-weight: 500;
+  font-weight: 600;
   color: #fff;
   border: 1px solid transparent;
   margin: 0 5px;
-  border-radius: 70px;
+  border-radius: 4px;
   padding: 2px 12px;
   background: none;
-  width: 150px;
 }
 
 .mode-button.active {
-  border-color: rgba(209, 208, 208, 0.1);
+  border-color: rgba(64, 64, 64, 0.1);
 }
 .mode-button:hover {
-  background-color: #666666;
+  background-color: rgba(250, 250, 250, 0.329);
 }
 
 .main-buttons {
@@ -103,17 +102,17 @@ progress::-webkit-progress-value {
   height: 55px;
   text-transform: uppercase;
   font-weight: bold;
-  width: 65px;
+  width: 55px;
   background-color: white;
   border-width: initial;
   border-style: none;
   margin: 0 10px;
-  border-radius: 5px;
+  border-radius: 4px;
   transition: color 0.5s ease-in-out;
 }
 .adjust-button:hover,
 .main-button:hover {
-  background-color: gainsboro;
+  background-color: #666666;
 }
 .main-button {
   width: 200px;
@@ -128,7 +127,22 @@ button:active {
   transform: translateY(6px);
   box-shadow: none;
   outline: none;
-  background-color: rgba(95, 95, 95, 0.63);
+}
+
+.fullscreen-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.fullscreen-button:hover {
+  color: rgba(250, 250, 250, 0.329);
 }
 
 .hidden {
@@ -200,8 +214,4 @@ button:active {
   .main-button {
     width: 140px;
   }
-}
-
-html{
-  cursor: url(paws.png) , auto;
 }

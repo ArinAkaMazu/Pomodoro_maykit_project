@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Pomodoro Timer</title>
+    <title>Pomodoro Clock</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
   </head>
   <body>
-    <main class="app">
+    <main class="app" id="app">
       <progress id="js-progress" value="0"></progress>
       <div class="progress-bar"></div>
       <div class="timer">
@@ -19,7 +19,7 @@
             class="button active mode-button"
             id="js-pomodoro"
           >
-            Focus
+            Pomodoro
           </button>
           <button
             data-mode="shortBreak"
@@ -41,18 +41,21 @@
           <span class="separator">:</span>
           <span id="js-seconds">00</span>
         </div>
-        <div class="button-group main-buttons">
+        <div class="main-buttons">
           <button class="adjust-button" id="js-decrease">-</button>
           <button class="main-button" data-action="start" id="js-btn">
             Start
           </button>
           <button class="adjust-button" id="js-increase">+</button>
         </div>
+        <button class="fullscreen-button" id="js-fullscreen">&#x26F6;</button>
       </div>
     </main>
     <div class="hidden">
+      <audio src="backtowork.mp3" data-sound="pomodoro"></audio>
+      <audio src="break.mp3" data-sound="shortBreak"></audio>
+      <audio src="break.mp3" data-sound="longBreak"></audio>
       <audio src="button-sound.mp3" id="button-sound"></audio>
-      <audio src="break.mp3" id="break-sound"></audio>
     </div>
     <script src="main.js"></script>
   </body>
