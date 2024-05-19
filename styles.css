@@ -69,17 +69,18 @@ progress::-webkit-progress-value {
 }
 
 .mode-button {
-  font-size: 16px;
+  font-size: 20px;
   height: 28px;
   cursor: pointer;
   box-shadow: none;
-  font-weight: 300;
+  font-weight: 500;
   color: #fff;
   border: 1px solid transparent;
   margin: 0 5px;
-  border-radius: 4px;
+  border-radius: 70px;
   padding: 2px 12px;
   background: none;
+  width: 150px;
 }
 
 .mode-button.active {
@@ -99,12 +100,12 @@ progress::-webkit-progress-value {
   height: 55px;
   text-transform: uppercase;
   font-weight: bold;
-  width: 55px;
+  width: 65px;
   background-color: white;
   border-width: initial;
   border-style: none;
   margin: 0 10px;
-  border-radius: 4px;
+  border-radius: 5px;
   transition: color 0.5s ease-in-out;
 }
 
