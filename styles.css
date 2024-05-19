@@ -88,6 +88,7 @@ progress::-webkit-progress-value {
 }
 .mode-button:hover {
   background-color: rgba(250, 250, 250, 0.329);
+  cursor: url("pawprint.png"), pointer;
 }
 
 .main-buttons {
@@ -114,6 +115,7 @@ progress::-webkit-progress-value {
 .adjust-button:hover,
 .main-button:hover {
   background-color: #666666;
+  cursor: url("pawprint.png"), pointer;
 }
 .main-button {
   width: 200px;
@@ -144,6 +146,7 @@ button:active {
 
 .fullscreen-button:hover {
   color: rgba(250, 250, 250, 0.329);
+  cursor: url("pawprint.png"), pointer;
 }
 
 .hidden {
