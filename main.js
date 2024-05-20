@@ -4,6 +4,7 @@ const timer = {
   longBreak: 900,
   longBreakInterval: 4,
   sessions: 0,
+  mode: "pomodoro", // Keep track of the current mode
 };
 
 let interval;
@@ -13,7 +14,11 @@ const decreaseButton = document.getElementById("js-decrease");
 const increaseButton = document.getElementById("js-increase");
 const fullscreenButton = document.getElementById("js-fullscreen");
 
+const buttonSound = document.getElementById("button-sound");
+const pomodoroEndSound = document.getElementById("pomodoro-end-sound");
+
 mainButton.addEventListener("click", () => {
+  playSound(buttonSound);
   const { action } = mainButton.dataset;
   if (action === "start") {
     startTimer();
@@ -23,32 +28,22 @@ mainButton.addEventListener("click", () => {
 });
 
 decreaseButton.addEventListener("click", () => {
-  if (timer.pomodoro > 300) {
-    timer.pomodoro -= 300;
-    if (timer.mode === "pomodoro") {
-      switchMode("pomodoro");
-    }
-  }
+  playSound(buttonSound);
+  adjustTimer(-300);
 });
 
 increaseButton.addEventListener("click", () => {
-  timer.pomodoro += 300;
-  if (timer.mode === "pomodoro") {
-    switchMode("pomodoro");
-  }
+  playSound(buttonSound);
+  adjustTimer(300);
 });
 
 fullscreenButton.addEventListener("click", () => {
+  playSound(buttonSound);
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen();
   } else if (document.exitFullscreen) {
     document.exitFullscreen();
   }
-});
-
-const buttonSound = document.getElementById("button-sound");
-fullscreenButton.addEventListener("click", () => {
-  buttonSound.play();
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -63,6 +58,7 @@ function handleMode(event) {
 
   if (!mode) return;
 
+  playSound(buttonSound);
   timer.mode = mode;
   switchMode(mode);
   stopTimer();
@@ -108,6 +104,7 @@ function startTimer() {
 
     if (timer.remainingTime.total <= 0) {
       clearInterval(interval);
+      playSound(pomodoroEndSound);
 
       switch (timer.mode) {
         case "pomodoro":
@@ -123,18 +120,18 @@ function startTimer() {
           switchMode("pomodoro");
       }
 
-      document.querySelector(`[data-sound="${timer.mode}"]`).play();
-
       startTimer();
     }
   }, 1000);
 }
+
 function stopTimer() {
   clearInterval(interval);
   mainButton.dataset.action = "start";
   mainButton.textContent = "Start";
   mainButton.classList.remove("active");
 }
+
 function getRemainingTime(endTime) {
   const currentTime = Date.parse(new Date());
   const difference = endTime - currentTime;
@@ -146,4 +143,19 @@ function getRemainingTime(endTime) {
     minutes,
     seconds,
   };
+}
+
+function adjustTimer(amount) {
+  const mode = timer.mode;
+  if (timer[mode] + amount > 0) {
+    timer[mode] += amount;
+    if (timer.mode === mode) {
+      switchMode(mode);
+    }
+  }
+}
+
+function playSound(sound) {
+  sound.currentTime = 0;
+  sound.play();
 }

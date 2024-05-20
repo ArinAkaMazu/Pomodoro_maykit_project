@@ -17,7 +17,7 @@ html {
   --longBreak: hsl(105, 16%, 40%);
 }
 body {
-  background-image: url("background.webp");
+  background-image: url("bg2.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
