@@ -156,7 +156,7 @@ button:active {
 }
 
 .fullscreen-button:hover {
-  color: rgba(250, 250, 250, 0.329);
+  color: rgba(207, 201, 201, 0.925);
   cursor: url("pawprint.png"), pointer;
 }
 
