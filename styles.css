@@ -125,7 +125,7 @@ progress::-webkit-progress-value {
 }
 .adjust-button:hover,
 .main-button:hover {
-  background-color: #666666;
+  background-color: #b4b4b4;
   cursor: url("pawprint.png"), pointer;
 }
 .main-button {
