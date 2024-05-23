@@ -159,3 +159,31 @@ function playSound(sound) {
   sound.currentTime = 0;
   sound.play();
 }
+document.addEventListener("DOMContentLoaded", () => {
+  const newTaskInput = document.getElementById("new-task");
+  const tasksList = document.getElementById("tasks");
+
+  newTaskInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter" && newTaskInput.value.trim() !== "") {
+      const li = document.createElement("li");
+
+      const label = document.createElement("label");
+      label.textContent = newTaskInput.value.trim();
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+
+      li.appendChild(label);
+      li.appendChild(checkbox);
+      tasksList.appendChild(li);
+      newTaskInput.value = "";
+    }
+  });
+
+  tasksList.addEventListener("click", (e) => {
+    if (e.target.tagName === "INPUT" && e.target.type === "checkbox") {
+      const li = e.target.parentElement;
+      tasksList.removeChild(li);
+    }
+  });
+});
