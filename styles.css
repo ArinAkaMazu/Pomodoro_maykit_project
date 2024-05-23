@@ -183,13 +183,18 @@ button:active {
   padding: 10px;
   margin-bottom: 10px;
   border: none;
-  background-color: #b4b4b4;
+  background-color: rgba(255, 255, 255, 0.829);
   border-radius: 4px;
   outline: none;
 }
 .todo-list ul {
   list-style: none;
   padding: 0;
+}
+::placeholder {
+  font-family: "Poppins";
+  font-size: 14px;
+  color: black;
 }
 .todo-list li {
   display: flex;
@@ -198,6 +203,7 @@ button:active {
   padding: 5px 0;
   border-bottom: 1px solid #fff;
   color: white;
+  font-family: "Poppins";
 }
 .todo-list li label {
   flex-grow: 1;
