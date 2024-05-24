@@ -180,12 +180,18 @@ button:active {
 .todo-list input {
   background-color: rgba(255, 255, 255, 0.973);
   border: none;
-  border-radius: 2px;
+  outline: none;
+  border-radius: 3px;
   padding: 10px;
   margin-bottom: 4px;
+  font-family: "Poppins";
 }
+
 ::placeholder {
   color: black;
+  font-family: "Poppins";
+  font-size: 13px;
+  font-weight: 500;
 }
 .todo-list {
   display: none;
@@ -246,12 +252,19 @@ button:active {
   transform: rotate(45deg);
 }
 .todo-toggle {
-  width: 120px;
-  height: 30px;
+  width: 166px;
+  height: 38px;
   background-color: rgba(17, 14, 14, 0.8);
   border: none;
   border-radius: 5px;
   color: white;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
+  font-family: "Poppins";
+}
+.todo-list input:hover {
+  background-color: #c4c1c1;
+}
+.todo-toggle:hover {
+  cursor: pointer;
 }
