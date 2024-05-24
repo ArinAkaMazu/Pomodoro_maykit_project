@@ -4,7 +4,7 @@ const timer = {
   longBreak: 900,
   longBreakInterval: 4,
   sessions: 0,
-  mode: "pomodoro", // Keep track of the current mode
+  mode: "pomodoro",
 };
 
 let interval;
@@ -159,31 +159,38 @@ function playSound(sound) {
   sound.currentTime = 0;
   sound.play();
 }
+
 document.addEventListener("DOMContentLoaded", () => {
+  const todoToggle = document.getElementById("js-todo-toggle");
+  const todoList = document.getElementById("js-todo-list");
+
+  todoToggle.addEventListener("click", () => {
+    todoList.style.display =
+      todoList.style.display === "none" || todoList.style.display === ""
+        ? "block"
+        : "none";
+  });
+
   const newTaskInput = document.getElementById("new-task");
-  const tasksList = document.getElementById("tasks");
+  const tasksUl = document.getElementById("tasks");
 
-  newTaskInput.addEventListener("keypress", (e) => {
+  newTaskInput.addEventListener("keypress", function (e) {
     if (e.key === "Enter" && newTaskInput.value.trim() !== "") {
+      const taskText = newTaskInput.value.trim();
       const li = document.createElement("li");
-
-      const label = document.createElement("label");
-      label.textContent = newTaskInput.value.trim();
-
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-
-      li.appendChild(label);
-      li.appendChild(checkbox);
-      tasksList.appendChild(li);
+      li.innerHTML = `<span class="task-text">${taskText}</span><input type="checkbox" class="task-checkbox"/>`;
+      tasksUl.appendChild(li);
       newTaskInput.value = "";
     }
   });
 
-  tasksList.addEventListener("click", (e) => {
-    if (e.target.tagName === "INPUT" && e.target.type === "checkbox") {
-      const li = e.target.parentElement;
-      tasksList.removeChild(li);
+  tasksUl.addEventListener("click", function (e) {
+    if (
+      e.target &&
+      e.target.nodeName === "INPUT" &&
+      e.target.type === "checkbox"
+    ) {
+      e.target.parentNode.remove();
     }
   });
 });

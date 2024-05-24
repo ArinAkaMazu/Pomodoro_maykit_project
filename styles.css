@@ -3,6 +3,7 @@
 html {
   box-sizing: border-box;
   cursor: url("pawprint.png"), auto;
+  font-family: "Poppins";
 }
 *,
 *::before,
@@ -160,135 +161,97 @@ button:active {
   cursor: url("pawprint.png"), pointer;
 }
 
-.todo-list {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background-color: rgba(17, 14, 14, 0.8);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  color: #333;
-  width: 300px;
-  max-height: 400px;
-  overflow-y: auto;
+/* Styles for To-Do List */
+.todo-container {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  text-align: left;
 }
-.todo-list h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: #333;
+
+.todo-header {
+  font-size: 18px;
+  font-weight: bold;
+  background-color: rgba(184, 175, 175, 0.9);
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 .todo-list input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.973);
   border: none;
-  background-color: rgba(255, 255, 255, 0.829);
-  border-radius: 4px;
-  outline: none;
+  border-radius: 2px;
+  padding: 10px;
+  margin-bottom: 4px;
 }
-.todo-list ul {
+::placeholder {
+  color: black;
+}
+.todo-list {
+  display: none;
+  background-color: rgba(17, 14, 14, 0.8);
+  padding: 15px;
+  border-radius: 5px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
+
+#tasks {
   list-style: none;
   padding: 0;
 }
-::placeholder {
-  font-family: "Poppins";
-  font-size: 14px;
-  color: black;
-}
-.todo-list li {
+
+#tasks li {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
   padding: 5px 0;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #ccc;
   color: white;
-  font-family: "Poppins";
 }
-.todo-list li label {
-  flex-grow: 1;
+
+.task-text {
+  flex: 1;
+  font-size: 16px;
+}
+
+.task-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff;
   cursor: pointer;
-}
-.todo-list li input[type="checkbox"] {
-  cursor: pointer;
+  position: relative;
 }
 
-/* Responsive styles */
-
-@media screen and (max-width: 1024px) {
-  .clock {
-    font-size: 12rem;
-  }
-  .mode-button {
-    font-size: 14px;
-    height: 40px;
-    padding: 2px 8px;
-  }
-  .adjust-button,
-  .main-button {
-    font-size: 18px;
-    height: 45px;
-    width: 45px;
-  }
-  .main-button {
-    width: 160px;
-  }
-  .todo-list {
-    width: 250px;
-  }
+.task-checkbox:checked {
+  background: #4caf50;
+  border-color: #4caf50;
 }
 
-@media screen and (max-width: 768px) {
-  .clock {
-    font-size: 10rem;
-  }
-  .mode-button {
-    font-size: 12px;
-    height: 35px;
-    padding: 2px 6px;
-  }
-  .adjust-button,
-  .main-button {
-    font-size: 16px;
-    height: 40px;
-    width: 40px;
-  }
-  .main-button {
-    width: 140px;
-  }
-  .todo-list {
-    width: 220px;
-  }
+.task-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
-
-@media screen and (max-width: 550px) {
-  .clock {
-    font-size: 8rem;
-  }
-  .main-buttons {
-    flex-direction: column;
-  }
-  .adjust-button,
-  .main-button {
-    margin: 10px 0;
-  }
-  .mode-button {
-    font-size: 10px;
-    height: 30px;
-    padding: 2px 4px;
-  }
-  .adjust-button,
-  .main-button {
-    font-size: 14px;
-    height: 35px;
-    width: 35px;
-  }
-  .main-button {
-    width: 120px;
-  }
-  .todo-list {
-    width: 200px;
-    bottom: 10px;
-    right: 10px;
-  }
+.todo-toggle {
+  width: 120px;
+  height: 30px;
+  background-color: rgba(17, 14, 14, 0.8);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
 }
