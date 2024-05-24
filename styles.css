@@ -175,11 +175,11 @@ button:active {
   font-weight: bold;
   background-color: rgba(0, 0, 0, 0.9);
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   color: white;
   text-align: center;
-  width: 200px;
+  width: 212px;
 }
 .todo-list input {
   background-color: rgba(255, 255, 255, 0.973);
