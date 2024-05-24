@@ -280,12 +280,12 @@ button:active {
   top: 30px;
   left: 30px;
   font-size: 35px;
-  font-weight: 600;
+  font-weight: 300;
   background: none;
   padding: 10px;
   text-align: center;
   z-index: 1000;
   color: white;
-  font-family: "Poppins";
+  font-family: "Titillium Web";
   width: 80px;
 }
