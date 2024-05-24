@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -61,17 +61,18 @@
         </div>
         <button class="fullscreen-button" id="js-fullscreen">⛶</button>
       </div>
-      <div class="todo-container">
-        <button class="todo-toggle" id="js-todo-toggle">To-Do List</button>
-        <div class="todo-list" id="js-todo-list">
-          <input type="text" id="new-task" placeholder="Add new task..." />
-          <ul id="tasks"></ul>
-        </div>
-      </div>
     </main>
     <div class="hidden">
       <audio id="button-sound" src="button-sound.mp3"></audio>
-      <audio id="break-sound" src="break.mp3"></audio>
+      <audio id="pomodoro-end-sound" src="break.mp3"></audio>
+    </div>
+    <div class="todo-container">
+      <div class="digital-clock" id="digital-clock"></div>
+      <div class="todo-header" id="js-todo-toggle">To-Do List</div>
+      <div class="todo-list" id="js-todo-list">
+        <input type="text" id="new-task" placeholder="Add Tasks..." />
+        <ul id="tasks"></ul>
+      </div>
     </div>
     <script src="main.js"></script>
   </body>

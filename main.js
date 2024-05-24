@@ -193,4 +193,20 @@ document.addEventListener("DOMContentLoaded", () => {
       e.target.parentNode.remove();
     }
   });
+
+  // Digital clock
+  function updateDigitalClock() {
+    const clock = document.getElementById("digital-clock");
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, "0");
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    const hoursString = hours.toString().padStart(2, "0");
+    clock.textContent = `${hoursString}:${minutes} ${ampm}`;
+  }
+
+  setInterval(updateDigitalClock, 1000);
+  updateDigitalClock();
 });

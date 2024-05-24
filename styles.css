@@ -162,6 +162,7 @@ button:active {
 }
 
 /* Styles for To-Do List */
+/* Styles for To-Do List and Digital Clock */
 .todo-container {
   position: fixed;
   bottom: 22px;
@@ -172,10 +173,13 @@ button:active {
 .todo-header {
   font-size: 18px;
   font-weight: bold;
-  background-color: rgba(184, 175, 175, 0.9);
+  background-color: rgba(0, 0, 0, 0.9);
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
+  color: white;
+  text-align: center;
+  width: 200px;
 }
 .todo-list input {
   background-color: rgba(255, 255, 255, 0.973);
@@ -267,4 +271,21 @@ button:active {
 }
 .todo-toggle:hover {
   cursor: pointer;
+}
+.todo-header:hover {
+  background-color: #0f0f0f;
+}
+.digital-clock {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  font-size: 35px;
+  font-weight: 600;
+  background: none;
+  padding: 10px;
+  text-align: center;
+  z-index: 1000;
+  color: white;
+  font-family: "Poppins";
+  width: 80px;
 }
