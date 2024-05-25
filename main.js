@@ -88,6 +88,8 @@ function updateClock() {
   const sec = document.getElementById("js-seconds");
   min.textContent = minutes;
   sec.textContent = seconds;
+
+  document.title = `${minutes}:${seconds} - Pomodoro Timer`;
 }
 
 function startTimer() {
@@ -203,8 +205,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const ampm = hours >= 12 ? "PM" : "AM";
     hours = hours % 12;
     hours = hours ? hours : 12; // the hour '0' should be '12'
-    const hoursString = hours.toString().padStart(2, "0");
-    clock.textContent = `${hoursString}:${minutes} ${ampm}`;
+    const timeString = `${hours}:${minutes} <span class="ampm">${ampm}</span>`;
+
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const dayName = days[now.getDay()];
+    const month = now.toLocaleString("default", { month: "long" });
+    const day = now.getDate();
+    const year = now.getFullYear();
+    const dateString = `${dayName} - ${month} ${day}, ${year}`;
+
+    clock.innerHTML = `<span class="time">${timeString}</span><span class="day-date">${dateString}</span>`;
   }
 
   setInterval(updateDigitalClock, 1000);
