@@ -165,6 +165,9 @@ function playSound(sound) {
 document.addEventListener("DOMContentLoaded", () => {
   const todoToggle = document.getElementById("js-todo-toggle");
   const todoList = document.getElementById("js-todo-list");
+  const newTaskInput = document.getElementById("new-task");
+  const tasksUl = document.getElementById("tasks");
+  const clearTasksButton = document.getElementById("clear-tasks");
 
   todoToggle.addEventListener("click", () => {
     todoList.style.display =
@@ -172,9 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ? "block"
         : "none";
   });
-
-  const newTaskInput = document.getElementById("new-task");
-  const tasksUl = document.getElementById("tasks");
 
   newTaskInput.addEventListener("keypress", function (e) {
     if (e.key === "Enter" && newTaskInput.value.trim() !== "") {
@@ -196,6 +196,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  clearTasksButton.addEventListener("click", () => {
+    tasksUl.innerHTML = "";
+  });
   // Digital clock
   function updateDigitalClock() {
     const clock = document.getElementById("digital-clock");
