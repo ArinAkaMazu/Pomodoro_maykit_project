@@ -75,7 +75,9 @@ function switchMode(mode) {
     .querySelectorAll("button[data-mode]")
     .forEach((e) => e.classList.remove("active"));
   document.querySelector(`[data-mode="${mode}"]`).classList.add("active");
-  document.body.style.backgroundColor = `var(--${mode})`;
+
+  document.body.className = mode; // Update the background based on the mode
+
   updateClock();
 }
 
@@ -107,22 +109,7 @@ function startTimer() {
     if (timer.remainingTime.total <= 0) {
       clearInterval(interval);
       playSound(pomodoroEndSound);
-
-      switch (timer.mode) {
-        case "pomodoro":
-          timer.sessions++;
-
-          if (timer.sessions % timer.longBreakInterval === 0) {
-            switchMode("longBreak");
-          } else {
-            switchMode("shortBreak");
-          }
-          break;
-        default:
-          switchMode("pomodoro");
-      }
-
-      startTimer();
+      handleTimerCompletion();
     }
   }, 1000);
 }
@@ -162,6 +149,22 @@ function playSound(sound) {
   sound.play();
 }
 
+function handleTimerCompletion() {
+  switch (timer.mode) {
+    case "pomodoro":
+      timer.sessions++;
+      if (timer.sessions % timer.longBreakInterval === 0) {
+        switchMode("longBreak");
+      } else {
+        switchMode("shortBreak");
+      }
+      break;
+    default:
+      switchMode("pomodoro");
+  }
+  stopTimer(); // Ensure the timer stops and the button is not automatically pressed
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const todoToggle = document.getElementById("js-todo-toggle");
   const todoList = document.getElementById("js-todo-list");
@@ -199,6 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
   clearTasksButton.addEventListener("click", () => {
     tasksUl.innerHTML = "";
   });
+
   // Digital clock
   function updateDigitalClock() {
     const clock = document.getElementById("digital-clock");

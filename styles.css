@@ -17,8 +17,34 @@ html {
   --shortBreak: hsl(48, 23%, 40%);
   --longBreak: hsl(105, 16%, 40%);
 }
+/* Add this to your existing CSS file */
+
+:root {
+  --pomodoro-background: url("bg1.png");
+  --shortBreak-background: url("bg2.png");
+  --longBreak-background: url("bg3.png");
+}
+
 body {
-  background-image: url("bg2.png");
+  transition: background-image 0.5s ease-in-out; /* Add transition */
+}
+
+body.pomodoro {
+  background-image: var(--pomodoro-background);
+  background-size: cover;
+}
+
+body.shortBreak {
+  background-image: var(--shortBreak-background);
+  background-size: cover;
+}
+
+body.longBreak {
+  background-image: var(--longBreak-background);
+  background-size: cover;
+}
+
+body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
