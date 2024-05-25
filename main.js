@@ -48,128 +48,20 @@ fullscreenButton.addEventListener("click", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   switchMode("pomodoro");
-});
 
-const modeButtons = document.querySelector("#js-mode-buttons");
-modeButtons.addEventListener("click", handleMode);
-
-function handleMode(event) {
-  const { mode } = event.target.dataset;
-
-  if (!mode) return;
-
-  playSound(buttonSound);
-  timer.mode = mode;
-  switchMode(mode);
-  stopTimer();
-}
-
-function switchMode(mode) {
-  timer.remainingTime = {
-    total: timer[mode],
-    minutes: Math.floor(timer[mode] / 60),
-    seconds: timer[mode] % 60,
-  };
-
-  document
-    .querySelectorAll("button[data-mode]")
-    .forEach((e) => e.classList.remove("active"));
-  document.querySelector(`[data-mode="${mode}"]`).classList.add("active");
-
-  document.body.className = mode; // Update the background based on the mode
-
-  updateClock();
-}
-
-function updateClock() {
-  const { remainingTime } = timer;
-  const minutes = `${remainingTime.minutes}`.padStart(2, "0");
-  const seconds = `${remainingTime.seconds}`.padStart(2, "0");
-
-  const min = document.getElementById("js-minutes");
-  const sec = document.getElementById("js-seconds");
-  min.textContent = minutes;
-  sec.textContent = seconds;
-
-  document.title = `${minutes}:${seconds} - Pomodoro Timer`;
-}
-
-function startTimer() {
-  const { total } = timer.remainingTime;
-  const endTime = Date.parse(new Date()) + total * 1000;
-
-  mainButton.dataset.action = "stop";
-  mainButton.textContent = "Stop";
-  mainButton.classList.add("active");
-
-  interval = setInterval(function () {
-    timer.remainingTime = getRemainingTime(endTime);
-    updateClock();
-
-    if (timer.remainingTime.total <= 0) {
-      clearInterval(interval);
-      playSound(pomodoroEndSound);
-      handleTimerCompletion();
-    }
-  }, 1000);
-}
-
-function stopTimer() {
-  clearInterval(interval);
-  mainButton.dataset.action = "start";
-  mainButton.textContent = "Start";
-  mainButton.classList.remove("active");
-}
-
-function getRemainingTime(endTime) {
-  const currentTime = Date.parse(new Date());
-  const difference = endTime - currentTime;
-  const total = Number.parseInt(difference / 1000, 10);
-  const minutes = Number.parseInt((total / 60) % 60, 10);
-  const seconds = Number.parseInt(total % 60, 10);
-  return {
-    total,
-    minutes,
-    seconds,
-  };
-}
-
-function adjustTimer(amount) {
-  const mode = timer.mode;
-  if (timer[mode] + amount > 0) {
-    timer[mode] += amount;
-    if (timer.mode === mode) {
-      switchMode(mode);
-    }
-  }
-}
-
-function playSound(sound) {
-  sound.currentTime = 0;
-  sound.play();
-}
-
-function handleTimerCompletion() {
-  switch (timer.mode) {
-    case "pomodoro":
-      timer.sessions++;
-      if (timer.sessions % timer.longBreakInterval === 0) {
-        switchMode("longBreak");
+  if (Notification.permission !== "granted") {
+    Notification.requestPermission().then((permission) => {
+      if (permission === "granted") {
+        console.log("Notification permission granted.");
       } else {
-        switchMode("shortBreak");
+        console.log("Notification permission denied.");
       }
-      break;
-    default:
-      switchMode("pomodoro");
+    });
   }
-  stopTimer(); // Ensure the timer stops and the button is not automatically pressed
-}
 
-document.addEventListener("DOMContentLoaded", () => {
   const todoToggle = document.getElementById("js-todo-toggle");
   const todoList = document.getElementById("js-todo-list");
-  const taskInput = document.getElementById("taskInput");
-  const addTaskButton = document.getElementById("addTaskButton");
+  const newTaskInput = document.getElementById("new-task");
   const tasksUl = document.getElementById("tasks");
   const clearTasksButton = document.getElementById("clear-tasks");
 
@@ -180,33 +72,19 @@ document.addEventListener("DOMContentLoaded", () => {
         : "none";
   });
 
-  addTaskButton.addEventListener("click", function () {
-    addTaskFromInput();
-  });
-
-  taskInput.addEventListener("keypress", function (e) {
-    if (e.key === "Enter") {
-      addTaskFromInput();
+  newTaskInput.addEventListener("keypress", function (e) {
+    if (e.key === "Enter" && newTaskInput.value.trim() !== "") {
+      const taskText = newTaskInput.value.trim();
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <span class="task-text">${taskText}</span>
+        <input type="checkbox" class="task-checkbox"/>
+        <button class="delete-task"><i class="fas fa-trash-alt"></i></button>
+      `;
+      tasksUl.appendChild(li);
+      newTaskInput.value = "";
     }
   });
-
-  function addTaskFromInput() {
-    const taskText = taskInput.value.trim();
-    if (taskText !== "") {
-      addTask(taskText);
-      taskInput.value = "";
-    }
-  }
-
-  function addTask(taskText) {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <span class="task-text">${taskText}</span>
-      <input type="checkbox" class="task-checkbox"/>
-      <button class="delete-task"><i class="fas fa-trash-alt"></i></button>
-    `;
-    tasksUl.appendChild(li);
-  }
 
   tasksUl.addEventListener("click", function (e) {
     if (
@@ -265,3 +143,140 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(updateDigitalClock, 1000);
   updateDigitalClock();
 });
+
+const modeButtons = document.querySelector("#js-mode-buttons");
+modeButtons.addEventListener("click", handleMode);
+
+function handleMode(event) {
+  const { mode } = event.target.dataset;
+
+  if (!mode) return;
+
+  playSound(buttonSound);
+  timer.mode = mode;
+  switchMode(mode);
+  stopTimer();
+}
+
+function switchMode(mode) {
+  timer.remainingTime = {
+    total: timer[mode],
+    minutes: Math.floor(timer[mode] / 60),
+    seconds: timer[mode] % 60,
+  };
+
+  document
+    .querySelectorAll("button[data-mode]")
+    .forEach((e) => e.classList.remove("active"));
+  document.querySelector(`[data-mode="${mode}"]`).classList.add("active");
+
+  document.body.className = mode; // Update the background based on the mode
+
+  updateClock();
+}
+
+function updateClock() {
+  const { remainingTime } = timer;
+  const minutes = `${remainingTime.minutes}`.padStart(2, "0");
+  const seconds = `${remainingTime.seconds}`.padStart(2, "0");
+
+  const min = document.getElementById("js-minutes");
+  const sec = document.getElementById("js-seconds");
+  min.textContent = minutes;
+  sec.textContent = seconds;
+
+  document.title = `${minutes}:${seconds} - Pomodoro Timer`;
+}
+
+function startTimer() {
+  const { total } = timer.remainingTime;
+  const endTime = Date.parse(new Date()) + total * 1000;
+
+  mainButton.dataset.action = "stop";
+  mainButton.textContent = "Stop";
+  mainButton.classList.add("active");
+
+  let lastNotificationTime = 0;
+
+  interval = setInterval(function () {
+    timer.remainingTime = getRemainingTime(endTime);
+    updateClock();
+
+    const now = Date.now();
+    if (timer.remainingTime.total <= 0) {
+      clearInterval(interval);
+      playSound(pomodoroEndSound);
+      handleTimerCompletion();
+      showNotification("Pomodoro Timer", "Time's up!");
+    } else if (now - lastNotificationTime >= 60000) {
+      // Show notification every minute
+      const { minutes, seconds } = timer.remainingTime;
+      showNotification(
+        "Pomodoro Timer",
+        `Time remaining: ${minutes}:${seconds.toString().padStart(2, "0")}`
+      );
+      lastNotificationTime = now;
+    }
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(interval);
+  mainButton.dataset.action = "start";
+  mainButton.textContent = "Start";
+  mainButton.classList.remove("active");
+}
+
+function getRemainingTime(endTime) {
+  const currentTime = Date.parse(new Date());
+  const difference = endTime - currentTime;
+  const total = Number.parseInt(difference / 1000, 10);
+  const minutes = Number.parseInt((total / 60) % 60, 10);
+  const seconds = Number.parseInt(total % 60, 10);
+  return {
+    total,
+    minutes,
+    seconds,
+  };
+}
+
+function adjustTimer(amount) {
+  const mode = timer.mode;
+  if (timer[mode] + amount > 0) {
+    timer[mode] += amount;
+    if (timer.mode === mode) {
+      switchMode(mode);
+    }
+  }
+}
+
+function playSound(sound) {
+  sound.currentTime = 0;
+  sound.play();
+}
+
+function handleTimerCompletion() {
+  switch (timer.mode) {
+    case "pomodoro":
+      timer.sessions++;
+      if (timer.sessions % timer.longBreakInterval === 0) {
+        switchMode("longBreak");
+      } else {
+        switchMode("shortBreak");
+      }
+      break;
+    default:
+      switchMode("pomodoro");
+  }
+  stopTimer(); // Ensure the timer stops and the button is not automatically pressed
+}
+
+function showNotification(title, body) {
+  if (Notification.permission === "granted") {
+    const options = {
+      body: body,
+      icon: "favicon.png", // Path to an icon image
+    };
+    new Notification(title, options);
+  }
+}
