@@ -78,7 +78,7 @@ progress::-webkit-progress-value {
   text-align: center;
   padding: 50px;
   background-color: rgba(17, 14, 14, 0.8);
-  border-radius: 8px;
+  border-radius: 25px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
 }
