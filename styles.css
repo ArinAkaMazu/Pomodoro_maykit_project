@@ -207,6 +207,9 @@ button:active {
   text-align: center;
   width: 212px;
 }
+.todo-header:hover {
+  background-color: #111111;
+}
 .todo-list input {
   background-color: rgba(255, 255, 255, 0.973);
   border: none;
@@ -462,15 +465,14 @@ button:active {
 
   .todo-header {
     font-size: 16px;
-    width: 180px;
+    width: 290px;
   }
 
   .todo-toggle {
-    width: 150px;
+    width: 160px;
     height: 35px;
     font-size: 14px;
   }
-
   #digital-clock {
     font-size: 3rem;
   }
