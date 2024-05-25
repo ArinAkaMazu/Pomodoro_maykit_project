@@ -183,7 +183,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Enter" && newTaskInput.value.trim() !== "") {
       const taskText = newTaskInput.value.trim();
       const li = document.createElement("li");
-      li.innerHTML = `<span class="task-text">${taskText}</span><input type="checkbox" class="task-checkbox"/>`;
+      li.innerHTML = `
+        <span class="task-text">${taskText}</span>
+        <input type="checkbox" class="task-checkbox"/>
+        <button class="delete-task"><i class="fas fa-trash-alt"></i></button>
+      `;
       tasksUl.appendChild(li);
       newTaskInput.value = "";
     }
@@ -195,7 +199,18 @@ document.addEventListener("DOMContentLoaded", () => {
       e.target.nodeName === "INPUT" &&
       e.target.type === "checkbox"
     ) {
-      e.target.parentNode.remove();
+      const taskText = e.target.previousElementSibling;
+      taskText.style.textDecoration = e.target.checked
+        ? "line-through"
+        : "none";
+    }
+
+    if (
+      e.target &&
+      (e.target.classList.contains("fa-trash-alt") ||
+        e.target.classList.contains("delete-task"))
+    ) {
+      e.target.closest("li").remove();
     }
   });
 

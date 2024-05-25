@@ -252,6 +252,7 @@ button:active {
 .task-text {
   flex: 1;
   font-size: 16px;
+  text-decoration: none;
 }
 
 .task-checkbox {
@@ -263,6 +264,8 @@ button:active {
   background: #fff;
   cursor: pointer;
   position: relative;
+  margin-right: 10px;
+  margin-top: 4px;
 }
 
 .task-checkbox:checked {
@@ -281,27 +284,47 @@ button:active {
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
-.todo-toggle {
-  width: 166px;
-  height: 38px;
-  background-color: rgba(17, 14, 14, 0.8);
+
+.delete-task {
+  border: none;
+  background: none;
+  color: #ff5722;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.delete-task i {
+  margin: 0;
+  padding: 0;
+}
+
+.delete-task:hover {
+  color: #ff0000;
+  cursor: url("pawprint.png"), pointer;
+}
+
+.clear-tasks-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white;
   border: none;
   border-radius: 5px;
-  color: white;
+  cursor: pointer;
   font-size: 16px;
-  font-weight: 400;
   font-family: "Poppins";
 }
-.todo-toggle:hover {
-  cursor: pointer;
-}
-.todo-header:hover {
-  background-color: #0f0f0f;
-}
-/* Custom scrollbar for the todo-list */
-.todo-list {
-  scrollbar-width: thin; /* For Firefox */
-  scrollbar-color: #888 #333; /* For Firefox */
+
+.clear-tasks-button:hover {
+  background-color: rgba(255, 0, 0, 0.9);
 }
 
 .todo-list::-webkit-scrollbar {
