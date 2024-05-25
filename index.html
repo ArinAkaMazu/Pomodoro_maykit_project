@@ -83,15 +83,13 @@
       </div>
       <div class="todo-header" id="js-todo-toggle">To-Do List</div>
       <div class="todo-list" id="js-todo-list">
-        <input type="text" id="new-task" placeholder="Add Tasks..." />
-        <ul id="tasks">
-          <li>
-            <input type="checkbox" class="task-checkbox" />
-            <button class="delete-task">
-              <i class="fas fa-trash-alt"></i>
-            </button>
-          </li>
-        </ul>
+        <div class="input-container">
+          <input type="text" id="taskInput" placeholder="Add Tasks..." />
+          <button id="addTaskButton">
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+        <ul id="tasks"></ul>
         <button id="clear-tasks" class="clear-tasks-button">
           Clear All Tasks
         </button>

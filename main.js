@@ -168,7 +168,8 @@ function handleTimerCompletion() {
 document.addEventListener("DOMContentLoaded", () => {
   const todoToggle = document.getElementById("js-todo-toggle");
   const todoList = document.getElementById("js-todo-list");
-  const newTaskInput = document.getElementById("new-task");
+  const taskInput = document.getElementById("taskInput");
+  const addTaskButton = document.getElementById("addTaskButton");
   const tasksUl = document.getElementById("tasks");
   const clearTasksButton = document.getElementById("clear-tasks");
 
@@ -179,19 +180,33 @@ document.addEventListener("DOMContentLoaded", () => {
         : "none";
   });
 
-  newTaskInput.addEventListener("keypress", function (e) {
-    if (e.key === "Enter" && newTaskInput.value.trim() !== "") {
-      const taskText = newTaskInput.value.trim();
-      const li = document.createElement("li");
-      li.innerHTML = `
-        <span class="task-text">${taskText}</span>
-        <input type="checkbox" class="task-checkbox"/>
-        <button class="delete-task"><i class="fas fa-trash-alt"></i></button>
-      `;
-      tasksUl.appendChild(li);
-      newTaskInput.value = "";
+  addTaskButton.addEventListener("click", function () {
+    addTaskFromInput();
+  });
+
+  taskInput.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      addTaskFromInput();
     }
   });
+
+  function addTaskFromInput() {
+    const taskText = taskInput.value.trim();
+    if (taskText !== "") {
+      addTask(taskText);
+      taskInput.value = "";
+    }
+  }
+
+  function addTask(taskText) {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <span class="task-text">${taskText}</span>
+      <input type="checkbox" class="task-checkbox"/>
+      <button class="delete-task"><i class="fas fa-trash-alt"></i></button>
+    `;
+    tasksUl.appendChild(li);
+  }
 
   tasksUl.addEventListener("click", function (e) {
     if (
