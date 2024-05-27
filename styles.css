@@ -73,10 +73,9 @@ progress::-webkit-progress-bar {
 progress::-webkit-progress-value {
   background-color: #fff;
 }
-
 .timer {
   text-align: center;
-  padding: 50px;
+  padding: 70px;
   background-color: rgba(17, 14, 14, 0.8);
   border-radius: 25px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
