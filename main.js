@@ -91,7 +91,7 @@ function updateClock() {
   min.textContent = minutes;
   sec.textContent = seconds;
 
-  document.title = `${minutes}:${seconds} - Pomodoro Timer`;
+  document.title = `${minutes}:${seconds} | Pomodoro Timer`;
 }
 
 function startTimer() {
